@@ -5,8 +5,10 @@ import Role from "../models/Role";
 
 // Confirmar que el usuario envió su token
 
+
+//metodo 1 para verificar token 
 export const verifyToken = async (req, res, next) => {
-  let token = req.headers["x-access-token"];
+  let token = req.headers['application/json'];
 
   //si no esta enviando esa cabecera
   if (!token) return res.status(403).json({ message: "No token provided" });
@@ -21,8 +23,23 @@ export const verifyToken = async (req, res, next) => {
     next();
   } catch (error) {
     return res.status(401).json({ message: "Unauthorized!" });
+    
   }
 };
+
+//metodo 2 para verificar token 
+export const verifyTokenn = (req, res, next) => {
+  const token = req.header('auth-token')
+  if (!token) return res.status(401).json({ error: 'Acceso denegado' })
+  try {
+      const verified = jwt.verify(token, process.env.TOKEN_SECRET)
+      req.user = verified
+      next() // continuamos
+  } catch (error) {
+      res.status(400).json({error: 'token no es válido'})
+  }
+}
+
 
 export const isModerator = async (req, res, next) => {
   try {

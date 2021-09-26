@@ -36,7 +36,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Welcome Routes
-app.get("/", (req, res) => {
+/*app.get("/", (req, res) => {
   res.json({
     message: "Welcome",
     name: app.get("pkg").name,
@@ -44,7 +44,12 @@ app.get("/", (req, res) => {
     description: app.get("pkg").description,
     author: app.get("pkg").author,
   });
-});
+});*/
+
+// Middleware para Vue.js router modo history
+const history = require('connect-history-api-fallback');
+app.use(history());
+app.use(express.static(__dirname + "/public"));
 
 // Routes
 app.use("/api/program", programRoutes);
