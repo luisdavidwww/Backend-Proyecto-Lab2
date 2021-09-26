@@ -1,15 +1,21 @@
 import Pensum from "../models/Pensum";
+import path from 'path'
+import multer from 'multer';
 
 export const createPensum = async (req, res) => {
-    const { description, date, file } = req.body;
-  
+    const { description, date } = req.body;
+
+    const newPensum = new Pensum({
+      description,
+      date
+    });
+
+    if(req.file){
+      newPensum.file = res.req.file.filename;
+    }
+
     try {
-      const newPensum = new Pensum({
-        description,
-        date,
-        file
-      });
-  
+      
       const pensumSaved = await newPensum.save();
   
       res.status(201).json(pensumSaved);
@@ -18,7 +24,7 @@ export const createPensum = async (req, res) => {
       return res.status(500).json(error);
     }
   };
-  
+
   export const getPensumById = async (req, res) => {
     const { pensumId } = req.params;
   
@@ -31,14 +37,31 @@ export const createPensum = async (req, res) => {
     return res.json(pensum);
   };
   
+export const updatePensumByIdd = async (req, res) => {
+  const { description, date } = req.body;
+
+  try {
+    const newPensum = await Article.findByIdAndUpdate(id, { description, date })
+    if(req.file){
+      newPensum.file = res.req.file.filename;
+    }
+  } catch (e) {
+    // manejar el error
+  }
+};
+
+
   export const updatePensumById = async (req, res) => {
+    
     const updatedPensum = await Pensum.findByIdAndUpdate(
       req.params.pensumId,
       req.body,
+      req.file,
       {
         new: true,
       }
     );
+    
     res.status(204).json(updatedPensum);
   };
   
@@ -53,7 +76,7 @@ export const createPensum = async (req, res) => {
   
 
 
-  export const updatepdf = async (req, res) => {
+ /* export const updatepdf = async (req, res) => {
     const id = req.params._id;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
@@ -62,4 +85,4 @@ export const createPensum = async (req, res) => {
 
     await Pensum.findByIdAndUpdate(id, req.body = {file: "http://localhost:4000/" + path}, { new: true });
     res.json(updateanPensum);
-}
+}*/

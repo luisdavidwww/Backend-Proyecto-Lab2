@@ -21,7 +21,7 @@ createAdmin();
 
 // Coniguraciones
 app.set("pkg", pkg);
-app.set("port", process.env.PORT || 4000);
+app.set("port", process.env.PORT || 3000);
 app.set("json spaces", 4);
 
 // Middlewares
@@ -56,8 +56,5 @@ app.use("/api/auth", authRoutes);
 app.use(express.static('./public'));
 app.use('/uploads', express.static('uploads'));
 
-
-app.use(bodyParser.json({ limit: '30mb', extended: true }))
-app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
 
 export default app;

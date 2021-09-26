@@ -9,7 +9,7 @@ const pensumSchema = new Schema(
       type: String
     },
     file:{
-      type: Buffer
+      type: String
     }
   },
   {
