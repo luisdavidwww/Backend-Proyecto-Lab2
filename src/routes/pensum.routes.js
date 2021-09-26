@@ -12,7 +12,7 @@ router.get("/:pensumId", pensumCtrl.getPensumById);
 //[authJwt.verifyToken, authJwt.isModerator],
 
 router.post(
-  "/",
+  "/",upload.single('myFile'),
   //[authJwt.verifyToken],
   pensumCtrl.createPensum
 );
@@ -29,7 +29,7 @@ router.delete(
   pensumCtrl.deletePensumById
 );
 
-router.post('/upload', upload, pensumCtrl.updatepdf);
+//router.post('/upload', upload, pensumCtrl.updatepdf);
 
 
 export default router;

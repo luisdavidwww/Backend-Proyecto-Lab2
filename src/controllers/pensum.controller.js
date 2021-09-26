@@ -1,23 +1,28 @@
 import Pensum from "../models/Pensum";
 
 export const createPensum = async (req, res) => {
-    const { description, date, file } = req.body;
-  
-    try {
-      const newPensum = new Pensum({
-        description,
-        date,
-        file
-      });
-  
-      const pensumSaved = await newPensum.save();
-  
-      res.status(201).json(pensumSaved);
-    } catch (error) {
-      console.log(error);
-      return res.status(500).json(error);
+  const { description, date } = req.body;
+
+  try {
+
+    const newPensum = new Pensum({
+      description,
+      date
+    });
+
+    if(req.file){
+      newPensum.file = req.file.patch;
     }
-  };
+
+    const pensumSaved = await newPensum.save();
+
+    res.status(201).json(pensumSaved);
+    
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(error);
+  }
+};
   
   export const getPensumById = async (req, res) => {
     const { pensumId } = req.params;
