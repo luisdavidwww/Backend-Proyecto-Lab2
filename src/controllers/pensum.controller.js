@@ -57,7 +57,6 @@ export const updatePensumByIdd = async (req, res) => {
     const updatedPensum = await Pensum.findByIdAndUpdate(
       req.params.pensumId,
       req.body,
-      req.file,
       {
         new: true,
       }
