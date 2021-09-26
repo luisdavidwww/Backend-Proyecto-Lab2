@@ -3,28 +3,29 @@ import path from 'path'
 import multer from 'multer';
 
 export const createPensum = async (req, res) => {
-    const { description, date } = req.body;
+  const { description, date } = req.body;
 
-    const newPensum = new Pensum({
-      description,
-      date
-    });
+  const newPensum = new Pensum({
+    description,
+    date
+  });
 
-    if(req.file){
-      newPensum.file = res.req.file.filename;
-    }
+  if(req.file){
+    newPensum.file = res.req.file.filename;
+  }
 
-    try {
-      
-      const pensumSaved = await newPensum.save();
+  try {
+
+    const pensumSaved = await newPensum.save();
+
+    res.status(201).json(pensumSaved);
+    
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json(error);
+  }
+};
   
-      res.status(201).json(pensumSaved);
-    } catch (error) {
-      console.log(error);
-      return res.status(500).json(error);
-    }
-  };
-
   export const getPensumById = async (req, res) => {
     const { pensumId } = req.params;
   
