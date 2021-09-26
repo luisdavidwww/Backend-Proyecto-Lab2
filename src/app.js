@@ -26,7 +26,7 @@ app.set("json spaces", 4);
 
 // Middlewares
 const corsOptions = {
-  // origin: "http://localhost:3000",
+  origin: "http://localhost:3000",
 };
 app.use(cors(corsOptions));
 app.use(helmet());

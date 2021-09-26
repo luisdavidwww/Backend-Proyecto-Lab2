@@ -24,7 +24,7 @@ router.post("/signin", authCtrl.signin);
 
 
 
-//inicio
+//fin
 router.get('/logout',authCtrl.logout);
 
 
