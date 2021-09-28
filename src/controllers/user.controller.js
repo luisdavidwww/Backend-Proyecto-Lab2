@@ -32,6 +32,7 @@ export const createUser = async (req, res) => {
   }
 };
 
-export const getUsers = async (req, res) => {};
-
-export const getUser = async (req, res) => {};
+export const getUser = async (req, res) => {
+  const user = await User.find();
+  return res.json(user);
+};

@@ -14,4 +14,6 @@ router.post(
   usersCtrl.createUser
 );
 
+router.get("/",usersCtrl.getUser);
+
 export default router;

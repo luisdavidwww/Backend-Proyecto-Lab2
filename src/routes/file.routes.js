@@ -5,7 +5,8 @@ import * as fileCtrl from "../controllers/file.controller";
 import { authJwt } from "../middlewares";
 
 
-router.post("/upload", fileCtrl.postfile);
+router.get("/", fileCtrl.getListFiles);
 
+router.get("/:name", fileCtrl.download);
 
 export default router;

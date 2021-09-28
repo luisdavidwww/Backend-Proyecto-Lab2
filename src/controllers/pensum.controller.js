@@ -2,6 +2,7 @@ import Pensum from "../models/Pensum";
 import path from 'path'
 import multer from 'multer';
 
+
 export const createPensum = async (req, res) => {
   const { description, date } = req.body;
 
@@ -26,14 +27,14 @@ export const createPensum = async (req, res) => {
   }
 };
   
-  export const getPensumById = async (req, res) => {
+export const getPensumById = async (req, res) => {
     const { pensumId } = req.params;
   
     const pensum = await Pensum.findById(pensumId);
     res.status(200).json(pensum);
   };
   
-  export const getPensum = async (req, res) => {
+export const getPensum = async (req, res) => {
     const pensum = await Pensum.find();
     return res.json(pensum);
   };
@@ -46,17 +47,18 @@ export const updatePensumByIdd = async (req, res) => {
     if(req.file){
       newPensum.file = res.req.file.filename;
     }
+    res.status(201).json(pensumSaved);
   } catch (e) {
     // manejar el error
   }
 };
 
-
-  export const updatePensumById = async (req, res) => {
+export const updatePensumById = async (req, res) => {
     
     const updatedPensum = await Pensum.findByIdAndUpdate(
       req.params.pensumId,
       req.body,
+      req.file,
       {
         new: true,
       }
@@ -65,7 +67,7 @@ export const updatePensumByIdd = async (req, res) => {
     res.status(204).json(updatedPensum);
   };
   
-  export const deletePensumById = async (req, res) => {
+export const deletePensumById = async (req, res) => {
     const { pensumId } = req.params;
   
     await Pensum.findByIdAndDelete(pensumId);
@@ -74,6 +76,9 @@ export const updatePensumByIdd = async (req, res) => {
     res.status(204).json();
   };
   
+
+
+
 
 
  /* export const updatepdf = async (req, res) => {

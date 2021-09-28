@@ -39,6 +39,7 @@ export const createProgram = async (req, res) => {
       }
     );
     res.status(204).json(updatedProgram);
+    return res.json(updatedProgram);
   };
   
   export const deleteProductById = async (req, res) => {

@@ -5,6 +5,8 @@ import * as pensumCtrl from "../controllers/pensum.controller";
 import upload from "../middlewares/upload";
 import { authJwt } from "../middlewares";
 
+
+
 router.get("/", pensumCtrl.getPensum);
 
 router.get("/:pensumId", pensumCtrl.getPensumById);
@@ -21,7 +23,7 @@ router.post(
 router.put(
   "/:pensumId",
   //[authJwt.verifyToken, authJwt.isModerator],
-  pensumCtrl.updatePensumById
+  pensumCtrl.updatePensumByIdd
 );
 
 router.delete(
@@ -29,5 +31,6 @@ router.delete(
   //[authJwt.verifyToken, authJwt.isAdmin],
   pensumCtrl.deletePensumById
 );
+
 
 export default router;

@@ -6,7 +6,7 @@ import Pensum from "../models/Pensum";
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
       //cb(null, '/public');
-      cb(null, 'C:/Users/equipo/Documents/Ucla/Laboratorio 2/Proyecto final/api-jwt-AutorizacionAutenticacion/src/public/files');
+      cb(null, 'src/public/files/');
     },
     filename: function(req, file, cb) {
 
