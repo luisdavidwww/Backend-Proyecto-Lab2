@@ -38,7 +38,7 @@ export const createProgram = async (req, res) => {
         new: true,
       }
     );
-    res.status(204).json(updatedProgram);
+    //res.status(204).json(updatedProgram);
     return res.json(updatedProgram);
   };
   

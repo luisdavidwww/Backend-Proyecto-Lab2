@@ -11,6 +11,11 @@ const pensumSchema = new Schema(
     file:{
       type: String
     }
+    ,
+    comision:{
+      type: Schema.Types.ObjectId,
+      ref: "comision",
+    },
   },
   {
     timestamps: true,

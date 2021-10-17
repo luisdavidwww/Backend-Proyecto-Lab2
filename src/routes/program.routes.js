@@ -13,15 +13,15 @@ router.post(
   programCtrl.createProgram
 );
 
-router.put(
+router.post(
   "/:programId",
-  [authJwt.verifyToken, authJwt.isModerator],
+  //[authJwt.verifyToken, authJwt.isModerator],
   programCtrl.updateProgramById
 );
 
 router.delete(
   "/:programId",
-  [authJwt.verifyToken, authJwt.isAdmin],
+  //[authJwt.verifyToken, authJwt.isAdmin],
   programCtrl.deleteProductById
 );
 

@@ -4,11 +4,12 @@ import multer from 'multer';
 
 
 export const createPensum = async (req, res) => {
-  const { description, date } = req.body;
+  const { description, date, comision } = req.body;
 
   const newPensum = new Pensum({
     description,
-    date
+    date,
+    comision
   });
 
   if(req.file){
@@ -40,10 +41,10 @@ export const getPensum = async (req, res) => {
   };
   
 export const updatePensumByIdd = async (req, res) => {
-  const { description, date } = req.body;
+  const { description, date, comision } = req.body;
 
   try {
-    const newPensum = await Article.findByIdAndUpdate(id, { description, date })
+    const newPensum = await Article.findByIdAndUpdate(id, { description, date, comision })
     if(req.file){
       newPensum.file = res.req.file.filename;
     }

@@ -9,6 +9,7 @@ import pkg from "../package.json";
 
 import programRoutes from "./routes/program.routes";
 import pensumRoutes from "./routes/pensum.routes";
+import comisionRoutes from "./routes/comision.routes";
 import usersRoutes from "./routes/user.routes";
 import fileRoutes from "./routes/file.routes";
 import authRoutes from "./routes/auth.routes";
@@ -56,6 +57,7 @@ app.use("/api/program", programRoutes);
 app.use("/api/pensum", pensumRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/file", fileRoutes);
+app.use("/api/comision", comisionRoutes);
 app.use("/api/auth", authRoutes);
 
 app.use(express.static('./public'));
